@@ -332,7 +332,7 @@ $(document).ready(function () {
            &drivingStyle=2&highwayEfficiency=21.0
            */
         lastRequest = new Date().getTime();
-        $.getJSON('http://open.mapquestapi.com/directions/v0/route?callback=?', {
+        $.getJSON('http://open.mapquestapi.com/directions/v1/route?callback=?', {
             outFormat:'json',
             routeType:'shortest', // make options for this
             timeType:1, // options

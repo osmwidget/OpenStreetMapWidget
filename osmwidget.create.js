@@ -221,7 +221,7 @@ $(document).ready(function () {
                     $("#editPoly .fill").val(style.fillColor);
                     $("#editPoly .cbFill").val(style.fill);
 
-                    pickers.miniColors({letterCase: 'uppercase'});
+                    pickers.minicolors({letterCase: 'uppercase'});
                     $("#editPoly").dialog('option', 'buttons', {
                         Save:function() {
                             style.color     = $("#editPoly .stroke").val();
