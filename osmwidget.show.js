@@ -99,8 +99,17 @@ $(document).ready(function () {
                 .attr('src', 'audio/' + item + '.ogg')
                 .attr('type', 'audio/ogg')
                 .appendTo(a);
-            a.appendTo("#audio");
+                a.appendTo("#audio");
+
+                $('#directions').on('click', function() {
+                    a.currentTime = a.duration-.01
+                    a.play();
+                    a.load();
+                });
             });
+
+
+
         }
         var audioMap = {
             "icon-dirs-end_sm":"goal-reached"
