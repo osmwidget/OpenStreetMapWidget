@@ -89,7 +89,8 @@ $(document).ready(function () {
                 ,'turn-slight-left'
                 ,'turn-slight-right'];
             audios.forEach(function(item, i) {
-                var a = $("<audio />").attr('data-text', item).attr('preload', 'auto');
+                var a = $("<audio />").attr('data-text', item).attr('preload', 'auto')
+                    .attr('autoplay', true).attr('volume', 0)
                 $("<source />")
                 .attr('src', 'audio/' + item + '.mp3')
                 .attr('type', 'audio/mpeg')
@@ -131,6 +132,7 @@ $(document).ready(function () {
                  if (navigator.userAgent.indexOf('Android 4') > -1
                          && navigator.userAgent.indexOf('WebKit') > -1)
                      which[0].loop = true;
+                 which[0].volume = 1;
                  which[0].currentTime = 0;
                  which[0].play();
              } catch (e) {}
