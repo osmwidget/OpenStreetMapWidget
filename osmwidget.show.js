@@ -73,22 +73,21 @@ $(document).ready(function () {
             if (isInit) return;
             initAudio = false;
 
-            //var audios = ['turn-left','turn-right', 'turn-slight-left', 'turn-slight-right', 'keep-straight', 'goal-reached'];
             var audios = ['climb-the-ramp'
-        ,'goal-reached'
-        ,'keep-left'
-        ,'keep-right'
-        ,'keep-straight'
-        ,'merge-left'
-        ,'merge-right'
-        ,'take-exit-left'
-        ,'take-exit-right'
-        ,'turn-left'
-        ,'turn-right'
-        ,'turn-sharp-left'
-        ,'turn-sharp-right'
-        ,'turn-slight-left'
-        ,'turn-slight-right'];
+                ,'goal-reached'
+                ,'keep-left'
+                ,'keep-right'
+                ,'keep-straight'
+                ,'merge-left'
+                ,'merge-right'
+                ,'take-exit-left'
+                ,'take-exit-right'
+                ,'turn-left'
+                ,'turn-right'
+                ,'turn-sharp-left'
+                ,'turn-sharp-right'
+                ,'turn-slight-left'
+                ,'turn-slight-right'];
             audios.forEach(function(item, i) {
                 var a = $("<audio />").attr('data-text', item).attr('preload', 'auto');
                 $("<source />")
@@ -101,11 +100,6 @@ $(document).ready(function () {
                 .appendTo(a);
                 a.appendTo("#audio");
 
-                $('#directions').on('click', function() {
-                    a.currentTime = a.duration-.01
-                    a.play();
-                    a.load();
-                });
             });
 
 
