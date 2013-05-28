@@ -251,7 +251,7 @@ div.tooltip {
     max-width: 70%;
     max-height: 80%;
     border-radius: 1em;
-    padding:1em;
+    padding:0.5em;
     overflow:auto;
     z-index: 10000;
 }
@@ -262,11 +262,16 @@ div.tooltip {
 }
 
 #directionsPanel .point td {
-    padding:0.25em 0.5em;
+    padding:0.2em 0.2em;
 }
 
 #directionsPanel .point td.distance {
-    width:4.5em;
+    /*width:4.5em;*/
+}
+
+#directionsPanel .point td.distance {
+    padding-left:0.5em;
+    min-width:7.5ex;
 }
 
 #directionsPanel .point  {
