@@ -203,7 +203,7 @@ div.tooltip {
     top: 0em;
     right: 0;
     padding:0.3em;
-    width: 85%;
+    /*width: 85%;*/
     text-align: right;
 }
 
@@ -236,6 +236,7 @@ div.tooltip {
     border-radius: 1em;
     padding:0em;
     overflow:auto;
+    z-index: 65001;
 }
 #directionsCompact > div {
     padding:0.5em;
@@ -252,6 +253,7 @@ div.tooltip {
     border-radius: 1em;
     padding:1em;
     overflow:auto;
+    z-index: 65000;
 }
 
 #directionsPanel .point img {
