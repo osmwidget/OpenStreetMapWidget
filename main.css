@@ -53,7 +53,7 @@ table {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     padding: 5px;
-    z-index: 999999;
+    z-index: 9999;
 }
 
 .miniColors-selector.black {
@@ -236,7 +236,7 @@ div.tooltip {
     border-radius: 1em;
     padding:0em;
     overflow:auto;
-    z-index: 65001;
+    z-index: 10001;
 }
 #directionsCompact > div {
     padding:0.5em;
@@ -253,7 +253,7 @@ div.tooltip {
     border-radius: 1em;
     padding:1em;
     overflow:auto;
-    z-index: 65000;
+    z-index: 10000;
 }
 
 #directionsPanel .point img {
