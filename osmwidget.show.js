@@ -90,7 +90,7 @@ $(document).ready(function () {
                 ,'turn-slight-right'];
             audios.forEach(function(item, i) {
                 var a = $("<audio />").attr('data-text', item).attr('preload', 'auto')
-                    .attr('autoplay', true).attr('volume', 0)
+                    //.attr('autoplay', true).attr('volume', 0)
                 $("<source />")
                 .attr('src', 'audio/' + item + '.mp3')
                 .attr('type', 'audio/mpeg')
