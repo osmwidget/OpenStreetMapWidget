@@ -14,6 +14,99 @@ $(window).resize(function () {
     $("#map").height($(window).height());
 })
 
+
+$.mbAudio.sounds = {
+    directionsSprite: {
+        id: 'directionsSprite',
+        ogg: 'audio/directionsSprite.ogg',
+        mp3: 'audio/directionsSprite.mp3',
+        sprite: {
+            "climb-the-ramp": {
+                "start": 0,
+                "end": 1.2039999485015869,
+                "loop": false
+            },
+            "goal-reached": {
+                "start": 1.253999948501587,
+                "end": 2.2227499008178713,
+                "loop": false
+            },
+            "keep-left": {
+                "start": 2.272749900817871,
+                "end": 3.2414998531341555,
+                "loop": false
+            },
+            "keep-right": {
+                "start": 3.2914998531341553,
+                "end": 4.26024980545044,
+                "loop": false
+            },
+            "keep-straight": {
+                "start": 4.3102498054504395,
+                "end": 5.409749817848206,
+                "loop": false
+            },
+            "merge-left": {
+                "start": 5.459749817848206,
+                "end": 6.42849977016449,
+                "loop": false
+            },
+            "merge-right": {
+                "start": 6.47849977016449,
+                "end": 7.421249759197235,
+                "loop": false
+            },
+            "take-exit-left": {
+                "start": 7.471249759197235,
+                "end": 8.805749785900115,
+                "loop": false
+            },
+            "take-exit-right": {
+                "start": 8.855749785900116,
+                "end": 10.190249812602996,
+                "loop": false
+            },
+            "turn-left": {
+                "start": 10.240249812602997,
+                "end": 11.15674979686737,
+                "loop": false
+            },
+            "turn-right": {
+                "start": 11.20674979686737,
+                "end": 12.097249817848205,
+                "loop": false
+            },
+            "turn-sharp-left": {
+                "start": 12.147249817848206,
+                "end": 13.42949981689453,
+                "loop": false
+            },
+            "turn-sharp-right": {
+                "start": 13.479499816894531,
+                "end": 14.735499811172485,
+                "loop": false
+            },
+            "turn-slight-left": {
+                "start": 14.785499811172485,
+                "end": 16.04149980545044,
+                "loop": false
+            },
+            "turn-slight-right": {
+                "start": 16.09149980545044,
+                "end": 17.347499799728393,
+                "loop": false
+            }
+        }
+        
+    }
+};
+$(document).on("initAudio", function () {
+    console.log("onInitAudio");
+    //$.mbAudio.preload();
+    $.mbAudio.pause('directionsSprite');
+});
+
+
 $(document).ready(function () {
 
 
@@ -71,7 +164,13 @@ $(document).ready(function () {
 
         var init = self.init = function() {
             if (isInit) return;
+            isInit = true;
             initAudio = false;
+
+            $(document).trigger('initAudio');
+
+
+            return;
 
             var audios = ['climb-the-ramp'
                 ,'goal-reached'
@@ -90,7 +189,7 @@ $(document).ready(function () {
                 ,'turn-slight-right'];
             audios.forEach(function(item, i) {
                 var a = $("<audio />").attr('data-text', item).attr('preload', 'auto')
-                    //.attr('autoplay', true).attr('volume', 0)
+                //.attr('autoplay', true).attr('volume', 0)
                 $("<source />")
                 .attr('src', 'audio/' + item + '.mp3')
                 .attr('type', 'audio/mpeg')
@@ -99,15 +198,13 @@ $(document).ready(function () {
                 .attr('src', 'audio/' + item + '.ogg')
                 .attr('type', 'audio/ogg')
                 .appendTo(a);
-                a.appendTo("#audio");
+            a.appendTo("#audio");
 
             });
 
-
-
         }
-        var audioMap = {
-            "icon-dirs-end_sm":"goal-reached"
+            var audioMap = {
+                "icon-dirs-end_sm":"goal-reached"
                 ,"rs_fork_left2_sm":"keep-left"
                 ,"rs_fork_right2_sm":"keep-right"
                 ,"rs_gr_exitright_sm":"take-exit-right"
@@ -122,20 +219,26 @@ $(document).ready(function () {
                 ,"rs_slight_left_sm":"turn-slight-left"
                 ,"rs_slight_right_sm":"turn-slight-right"
                 ,"rs_straight_sm":"keep-straight"
-        };
+            };
 
-        var playIcon = self.playIcon = function(icon) {
-             var audio = audioMap[icon];
-             var which = $('#audio > audio[data-text="' + audio + '"]');
-             try {
-                 // workaround for the default android 4 browser
-                 if (navigator.userAgent.indexOf('Android 4') > -1
-                         && navigator.userAgent.indexOf('WebKit') > -1)
-                     which[0].loop = true;
-                 which[0].volume = 1;
-                 which[0].currentTime = 0;
-                 which[0].play();
-             } catch (e) {}
+            var playIcon = self.playIcon = function(icon) {
+
+                var audio = audioMap[icon];
+                
+                $.mbAudio.queue.add('directionsSprite', audio, function() {});
+                return;
+
+
+                var which = $('#audio > audio[data-text="' + audio + '"]');
+                try {
+                    // workaround for the default android 4 browser
+                    if (navigator.userAgent.indexOf('Android 4') > -1
+                            && navigator.userAgent.indexOf('WebKit') > -1)
+                        which[0].loop = true;
+                    which[0].volume = 1;
+                    which[0].currentTime = 0;
+                    which[0].play();
+                } catch (e) {}
         }
         
         return self;
